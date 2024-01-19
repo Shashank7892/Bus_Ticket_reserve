@@ -1,0 +1,12 @@
+{% extends "tickets/layout.html" %}
+
+{% block body %}
+    <h1>Bus Stop Details of : {{ bus_stop.bus_stop_name }}</h1>
+    <div>
+    <ul>
+        <li>Bus Stop Name: {{ bus_stop.bus_stop_name }}</li>
+        <li>Bus Stop Code: {{ bus_stop.bus_stop_code }}</li>
+    </ul>
+    </div>
+    <a href="{% url 'tickets:bus_stop_index' %}">Back to view all Bus Stops</a>
+{% endblock %}

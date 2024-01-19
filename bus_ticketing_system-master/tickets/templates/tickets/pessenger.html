@@ -1,0 +1,23 @@
+{% extends "tickets/layout.html" %}
+
+{% block body %}
+    <h1>passenger Details:</h1>
+    <div>
+    <ul>
+        <li>Name: {{ passenger.passenger_name }}</li>
+        <li>Phone Number: {{ passenger.phone_number }}</li>
+        <li>Email: {{ passenger.email }}</li>
+    </ul>
+    </div>
+
+    <!-- <h2>Tickets:</h2>
+    <div>
+        <ol>
+        {% for ticket in tickets %}
+            <li>{{ ticket }}</li>
+        {% empty %}
+            <li><strong>No ticket is booked for <em>{{ passenger.passenger_name }}</em>!</strong></li>
+        {% endfor %}
+    </div> -->
+    <a href="{% url 'tickets:passenger_index' %}">Back to view all passengers</a>
+{% endblock %}

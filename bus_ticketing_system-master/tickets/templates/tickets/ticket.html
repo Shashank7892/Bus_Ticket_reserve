@@ -1,0 +1,39 @@
+{% extends "tickets/layout.html" %}
+
+{% block body %}
+    <h1>Ticket Details:</h1>
+    <div>
+    <ul>
+        <li>Departure: {{ ticket.departure }}</li>
+        <li>Arrival: {{ ticket.arrival }}</li>
+        <li>Bus: {{ ticket.bus }}</li>
+        <li>Date: {{ ticket.date }}</li>
+        <li>Time: {{ ticket.time }}</li>
+    </ul>
+    </div>
+    <h2>Pessenngers:</h2>
+    <div>
+        <ol>
+        {% for passenger in passengers %}
+            <li>{{ passenger }}</li>
+        {% empty %}
+            <li><strong>No passengers available!</strong></li>
+        {% endfor %}
+        </ol>
+    </div>
+    <div>
+        <h2>Add passenger:</h2>
+        <form action="{% url 'tickets:book_ticket' ticket.id %}" method="post">
+            {% csrf_token %}
+            <select name="passenger">
+                {% for passenger in non_passengers %}
+                    <option value="{{ passenger.id }}">{{ passenger.passenger_name }}</option>
+                {% empty %}
+                    <li><strong>No passengers to add!</strong></li>
+                {% endfor %}
+            </select>
+            <input type="submit"/>
+        </form>
+    </div>
+    <a href="{% url 'tickets:ticket_index' %}">Back to view all available Tickets</a>
+{% endblock %}
